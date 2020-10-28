@@ -1,6 +1,6 @@
 {
-  "name": "@hcorta/react-to-image",
-  "version": "1.0.0",
+  "name": "react-to-image",
+  "version": "0.1.0",
   "description": "Hook for converting any React component into image",
   "author": "hcorta",
   "license": "MIT",
@@ -13,9 +13,6 @@
   "source": "src/index.js",
   "engines": {
     "node": ">=10"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
   },
   "scripts": {
     "build": "microbundle-crl --no-compress --format modern,cjs",
