@@ -1,41 +1,30 @@
-import React, { useRef } from 'react'
-import { useImage } from 'react-to-image'
+import React, { useEffect, useRef } from 'react'
+import { usePng } from 'react-to-image'
+import { toPng, toJpeg, toBlob, toPixeldata, toSvg } from 'html-to-image'
 
 export default function App() {
-  const titleRef = useRef()
-  const bodyRef = useRef()
-  const { ref, isLoading, data, error } = useImage({
-    onSuccess,
-    onError,
-    onLoading,
-    height: 200,
-    width: 400
+  // const ref = useRef()
+  const { ref, isLoading, getPng, ...rest } = usePng({
+    fileName: ''
   })
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        height: '100vh',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column'
-      }}
-    >
-      <h1 ref={ref}>This is a title</h1>
-      <span>this is body</span>
-      <button
-        onClick={() => {
-          toPng().then((dataUrl) => {
-            var link = document.createElement('a')
-            link.download = 'my-image-name.jpeg'
-            link.href = dataUrl
-            link.click()
-          })
+    <div>
+      {isLoading && <span>loading...</span>}
+      <div
+        ref={ref}
+        style={{
+          display: 'flex',
+          // height: 400,
+          // width: 400,
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'column'
         }}
       >
-        download
-      </button>
+        <h1>This is a title</h1>
+        <button onClick={getPng}>download</button>
+      </div>
     </div>
   )
 }
