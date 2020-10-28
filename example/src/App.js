@@ -1,12 +1,8 @@
 import React, { useEffect, useRef } from 'react'
-import { usePng } from 'react-to-image'
-import { toPng, toJpeg, toBlob, toPixeldata, toSvg } from 'html-to-image'
+import { useToImage } from 'react-to-image'
 
 export default function App() {
-  // const ref = useRef()
-  const { ref, isLoading, getPng, ...rest } = usePng({
-    fileName: ''
-  })
+  const { ref, isLoading, getSvg, getPng, getJpeg, ...rest } = useToImage()
 
   return (
     <div>
@@ -23,7 +19,9 @@ export default function App() {
         }}
       >
         <h1>This is a title</h1>
-        <button onClick={getPng}>download</button>
+        <button onClick={getSvg}>Download SVG</button>
+        <button onClick={getJpeg}>Download JPEG</button>
+        <button onClick={getPng}>Download PNG</button>
       </div>
     </div>
   )
