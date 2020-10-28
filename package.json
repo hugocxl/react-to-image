@@ -1,5 +1,5 @@
 {
-  "name": "react-to-image",
+  "name": "@hcorta/react-to-image",
   "version": "1.0.0",
   "description": "Hook for converting any React component into image",
   "author": "hcorta",
