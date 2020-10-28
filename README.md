@@ -1,6 +1,6 @@
-<img src="public/header.png" width="100%" align="center">
+<img src="public/front-image.png" width="100%" align="center">
 
-<div align="center" style="margin: 30px 0px">
+<div align="center" style="margin: 10px 0px">
 
   [![NPM](https://img.shields.io/npm/v/react-to-image.svg)](https://www.npmjs.com/package/react-to-image)
   [![Build Status](https://travis-ci.com/hcorta/react-to-image.svg?branch=master)](https://travis-ci.com/hcorta/react-to-image)
@@ -13,6 +13,8 @@
 Hook for converting any React component into image format
 
 </div>
+
+***
 
 ## Quick Features
 
