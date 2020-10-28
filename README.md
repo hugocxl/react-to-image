@@ -16,14 +16,12 @@ Hook for converting any React component into image format
 
 ## Quick Features
 
-- Transport/protocol/backend agnostic data fetching (REST, GraphQL, promises, whatever!)
-- Auto Caching + Refetching (stale-while-revalidate, Window Refocus, Polling/Realtime)
-- Parallel + Dependent Queries
-- Mutations + Reactive Query Refetching
-- Multi-layer Cache + Automatic Garbage Collection
-- Paginated + Cursor-based Queries
-- Load-More + Infinite Scroll Queries w/ Scroll Recovery
-- Request Cancellation
+* getSvg
+* getPng
+* getJpeg
+* getBlob
+* getPixelData
+* getCanvas
 
 ## Install
 
@@ -48,6 +46,50 @@ export function MyComponent() {
   )
 }
 ```
+
+## API
+
+```jsx
+const {
+  ref,
+  isLoading,
+  error,
+  dataURL,
+  getSvg,
+  getPng,
+  getJpeg,
+  getBlob,
+  getPixelData,
+  getCanvas
+} = useToImage({
+  width,
+  height
+  backgroundColor,
+  style,
+  quality,
+  cacheBust,
+  imagePlaceholder,
+  pixelRatio,
+  filter,
+}, callback)
+```
+
+### Options
+
+| name | type | default | description |
+|------|:----:|:-------:|-------------|
+|`width`|**number**| null | Width in pixels to be applied to node before rendering.
+|`height`|**number**| null | Height in pixels to be applied to node before rendering.
+|`backgroundColor`|**string**| '' | A string value for the background color, any valid CSS color value.
+|`style`|**object**| {} | Styles object to be merged with node's style before rendering.
+|`quality`|**number**| `1.0` (`100%`) | A number between `0` and `1` indicating image quality (e.g. `0.92` => `92%`) of the JPEG image.
+|`cacheBust`|**boolen**| false | Set to true to append the current time as a query string to URL requests to enable cache busting.
+|`imagePlaceholder`|**dataURL**| '' | A data URL for a placeholder image that will be used when fetching an image fails. Defaults to an empty string and will render empty areas for failed images.
+|`pixelRatio`|**number**| 1 | The pixel ratio of the captured image. Defalut use the actual pixel ratio of the device. Set `1` to use as initial-scale `1` for the image.
+|`filter`|**function**|null|A function taking DOM node as argument. Should return true if passed node should be included in the output. Excluding node means excluding it's children as well.Not called on the root node.
+
+### Callback
+Function to be called when any of the getters (getPng, getSvg,...) has finished converting the passed ref. Default to donwload as link.
 
 ## Contributing
 
