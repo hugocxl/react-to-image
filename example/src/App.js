@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useToImage } from 'react-to-image'
 
 export default function App() {
   const { ref, isLoading, getSvg, getPng, getJpeg, ...rest } = useToImage()
+  const [buttons, setButtons] = useState([])
 
   return (
     <div>
@@ -22,6 +23,17 @@ export default function App() {
         <button onClick={getSvg}>Download SVG</button>
         <button onClick={getJpeg}>Download JPEG</button>
         <button onClick={getPng}>Download PNG</button>
+
+        <h2>Buttons</h2>
+        <button
+          onClick={() => setButtons((prevState) => [...prevState, 'other'])}
+        >
+          Add buttons
+        </button>
+
+        {buttons.map((button) => (
+          <span key={button}>{button}</span>
+        ))}
       </div>
     </div>
   )

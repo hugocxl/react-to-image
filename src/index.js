@@ -63,14 +63,24 @@ export function useToImage(
     }
   }
 
+  const getSvg = useCallback(defaultGetter(toSvg, 'dataURL', 'svg'), [])
+  const getJpeg = useCallback(defaultGetter(toJpeg, 'dataURL', 'jpeg'), [])
+  const getPng = useCallback(defaultGetter(toPng, 'dataURL', 'png'), [])
+  const getBlob = useCallback(defaultGetter(toBlob, 'dataURL', 'png'), [])
+  const getCanvas = useCallback(defaultGetter(toCanvas, 'dataURL', 'svg'), [])
+  const getPixelData = useCallback(
+    defaultGetter(toPixelData, 'dataURL', 'svg'),
+    []
+  )
+
   return {
     ...state,
     ref: setRef,
-    getSvg: defaultGetter(toSvg, 'dataURL', 'svg'),
-    getJpeg: defaultGetter(toJpeg, 'dataURL', 'jpeg'),
-    getPng: defaultGetter(toPng, 'dataURL', 'png'),
-    getBlob: defaultGetter(toBlob, 'dataURL', 'png'),
-    getPixelData: defaultGetter(toPixelData, 'dataURL', 'svg'),
-    getCanvas: defaultGetter(toCanvas, 'dataURL', 'svg')
+    getSvg,
+    getJpeg,
+    getPng,
+    getBlob,
+    getPixelData,
+    getCanvas
   }
 }
