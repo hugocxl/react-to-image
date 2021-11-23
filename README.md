@@ -16,25 +16,29 @@ Hook for converting any React component into image format
 
 ***
 
-## Quick Features
+## Table of Contents 📚
 
-* getSvg
-* getPng
-* getJpeg
-* getBlob
-* getPixelData
-* getCanvas
+- [Installation](#Installation)
+- [Introducction](#Introducction)
+- [Usage](#Usage)
+- [Props](#Props)
+- [Contributing](#Contributing)
+- [Code of Conduct](#code-of-conduct)
+- [License](#License)
 
-## Install
+## ⚡️ Installation
 
-```bash
-yarn add react-to-image
+In order to use **`react-to-image`**, all you need to do is install the npm package:
+
+```sh
+yarn add @hcorta/react-to-image
 ```
 
-## Usage
+## ⚡️ Usage
+To start using `react-to-image`, you just need to import the **`useToImage`** hook from the root folder. Check the [options](#Options) section out for more info:
 
 ```jsx
-import { useToImage } from 'react-to-image'
+import { useToImage } from '@hcorta/react-to-image'
 
 export function MyComponent() {
   const { ref, isLoading, getSvg } = useToImage()
@@ -43,7 +47,7 @@ export function MyComponent() {
       <div ref={ref}>
         <h1>My title</h1>
         <button onClick={getSvg}>Download SVG</button>
-        {isLoading && 'loading..'}
+        {isLoading && 'loading...'}
     </div>
   )
 }
