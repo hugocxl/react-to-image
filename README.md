@@ -7,7 +7,6 @@
   [![dependencies Status](https://david-dm.org/hcorta/react-to-image/status.svg)](https://david-dm.org/hcorta/react-to-image)
   [![Bundle Size](https://badgen.net/bundlephobia/minzip/react-to-image@latest)](https://bundlephobia.com/result?p=react-to-image@latest)
   [![Github Stars](https://img.shields.io/github/stars/hcorta/react-to-image.svg?style=social&label=Star)](https://www.npmjs.com/package/react-to-image)
-  [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
   [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Hook for converting any React component into image format
