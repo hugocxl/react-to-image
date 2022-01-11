@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useToImage } from 'react-to-image'
+import { useToImage } from '@hcorta/react-to-image'
 
 export default function App() {
   const { ref, isLoading, getSvg, getPng, getJpeg, ...rest } = useToImage()

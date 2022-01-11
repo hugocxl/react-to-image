@@ -14,7 +14,7 @@
     "react": "link:../node_modules/react",
     "react-dom": "link:../node_modules/react-dom",
     "react-scripts": "link:../node_modules/react-scripts",
-    "react-to-image": "link:.."
+    "@hcorta/react-to-image": "link:.."
   },
   "devDependencies": {
     "@babel/plugin-syntax-object-rest-spread": "^7.8.3"
