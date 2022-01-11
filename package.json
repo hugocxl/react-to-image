@@ -1,13 +1,26 @@
 {
-  "name": "react-to-image",
-  "version": "1.0.0",
-  "description": "Hook for converting any React component into image",
-  "author": "hcorta",
+  "name": "@hcorta/react-to-image",
+  "description": "A React hook for converting any component to image",
+  "productName": "react-to-image",
+  "version": "0.0.1",
   "license": "MIT",
+  "private": false,
+  "author": "hcorta (http://github.com/hcorta)",
+  "homepage": "https://hcorta.github.io/react-to-image/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hcorta/react-to-image.git"
+    "url": "https://github.com/hcorta/react-to-image"
   },
+  "bugs": {
+    "url": "https://hcorta.github.io/react-to-image/issues"
+  },
+  "keywords": [
+    "react",
+    "component",
+    "hook",
+    "image",
+    "react-component"
+  ],
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",

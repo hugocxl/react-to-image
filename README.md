@@ -1,6 +1,7 @@
-<img src="public/front-image.png" width="100%" align="center">
+# react-to-image
 
-<div align="center" style="margin: 10px 0px">
+<div align="center">
+  <img src="public/front-image.png" width="100%" align="center" />
 
   [![NPM](https://img.shields.io/npm/v/react-to-image.svg)](https://www.npmjs.com/package/react-to-image)
   [![Build Status](https://travis-ci.com/hcorta/react-to-image.svg?branch=master)](https://travis-ci.com/hcorta/react-to-image)
@@ -9,8 +10,7 @@
   [![Github Stars](https://img.shields.io/github/stars/hcorta/react-to-image.svg?style=social&label=Star)](https://www.npmjs.com/package/react-to-image)
   [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-Hook for converting any React component into image format
-
+A React hook for converting any component to image
 </div>
 
 ***
@@ -66,17 +66,7 @@ const {
   getBlob,
   getPixelData,
   getCanvas
-} = useToImage({
-  width,
-  height
-  backgroundColor,
-  style,
-  quality,
-  cacheBust,
-  imagePlaceholder,
-  pixelRatio,
-  filter,
-}, callback)
+} = useToImage(options, callback)
 ```
 
 ### Options
