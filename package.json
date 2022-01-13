@@ -1,8 +1,8 @@
 {
   "name": "@hcorta/react-to-image",
   "description": "A React hook for converting any component to image",
-  "productName": "react-to-image",
-  "version": "0.0.1",
+  "productName": "@hcorta/react-to-image",
+  "version": "1.0.0",
   "license": "MIT",
   "private": false,
   "author": "hcorta (http://github.com/hcorta)",
@@ -37,7 +37,10 @@
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "update:dependencies": "yarn upgrade-interactive",
+    "update:release": "yarn version --allow-same-version=true --git-tag-version=true --new-version $v",
+    "postversion": "git push && git push --tags"
   },
   "peerDependencies": {
     "html-to-image": "^1.9.0",
