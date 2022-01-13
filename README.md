@@ -24,17 +24,25 @@ A React hook for converting any component to image
 
 ## Installation
 
-In order to use **`react-to-image`**, all you need to do is install the npm package:
+In order to use **`@hcorta/react-to-image`**, all you need to do is install the npm package:
 
 ```sh
 yarn add @hcorta/react-to-image
 ```
+
+> **`html-to-image`** and **`react`** are **peerDependencies** of **`react-to-image`**, you may **install your own versions**.
 
 ### Deprecation warning ⚠️
 
 ```sh
 react-to-image is deprecated => use @hcorta/react-to-image instead
 ```
+
+## Introduction
+
+[html-to-image](https://github.com/bubkoo/html-to-image) is a fantastic library that generates an image from a DOM node using HTML5 canvas and SVG.
+
+**`@hcorta/react-to-image`** is an abstraction wrapper built with [React](https://facebook.github.io/react/) on top of **`html-to-image`**.
 
 ## Usage
 
@@ -95,13 +103,10 @@ Function to be called when any of the getters (getPng, getSvg,...) has finished 
 
 No one’s perfect. If you’ve found any errors, want to suggest enhancements, or expand on a topic, please feel free to open an Issue or collaborate by PR.
 
-**Working on your first Pull Request?** You can learn how from this _free_ series:
-[How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)
-
 ## Code of Conduct
 
 [Contributor Code of Conduct](public/docs/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 ## License
 
-**react-to-image** is open source software licensed as MIT © [Hugo Corta](https://github.com/hcorta).
+**@hcorta/react-to-image** is open source software licensed as MIT © [Hugo Corta](https://github.com/hcorta).
