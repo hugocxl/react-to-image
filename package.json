@@ -1,70 +1,76 @@
 {
-  "name": "@hcorta/react-to-image",
-  "description": "A React hook for converting any component to image",
-  "productName": "@hcorta/react-to-image",
-  "version": "1.0.0",
+  "name": "@hugocxl/react-to-image",
+  "description": "Transform your React components into images using hooks",
+  "productName": "@hugocxl/react-to-image",
+  "version": "0.0.0",
   "license": "MIT",
   "private": false,
-  "author": "hcorta (http://github.com/hcorta)",
-  "homepage": "https://hcorta.github.io/react-to-image/",
+  "author": "hugocxl (http://github.com/hugocxl)",
+  "homepage": "https://hugocxl.github.io/react-to-image/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hcorta/react-to-image"
+    "url": "https://github.com/hugocxl/react-to-image"
   },
   "bugs": {
-    "url": "https://hcorta.github.io/react-to-image/issues"
+    "url": "https://hugocxl.github.io/react-to-image/issues"
   },
   "keywords": [
     "react",
-    "component",
-    "hook",
+    "react-hooks",
+    "react-to-image",
+    "react-component",
+    "hooks",
     "image",
-    "react-component"
+    "component"
   ],
   "main": "dist/index.js",
-  "module": "dist/index.modern.js",
-  "source": "src/index.js",
-  "engines": {
-    "node": ">=10"
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "source": "src/index.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
   },
   "scripts": {
-    "build": "microbundle-crl --no-compress --format modern,cjs",
-    "start": "microbundle-crl watch --no-compress --format modern,cjs",
-    "prepare": "run-s build",
-    "test": "run-s test:unit test:lint test:build",
-    "test:build": "run-s build",
-    "test:lint": "eslint .",
-    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom",
-    "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build",
-    "update:dependencies": "yarn upgrade-interactive",
-    "update:release": "yarn version --allow-same-version=true --git-tag-version=true --new-version $v",
-    "postversion": "git push && git push --tags"
-  },
-  "peerDependencies": {
-    "html-to-image": "^1.9.0",
-    "react": ">=15.0.0"
+    "dev": "parcel watch",
+    "build": "parcel build",
+    "format:check": "pnpm format --list-different",
+    "format:fix": "pnpm format --write",
+    "format": "prettier --cache --ignore-path .gitignore .",
+    "lint:check": "pnpm lint",
+    "lint:fix": "pnpm lint --fix",
+    "lint": "eslint --cache --ignore-path .gitignore .",
+    "postversion": "git push && git push --tags",
+    "setup:env": "npx vercel env pull .env.local",
+    "static:check": "pnpm lint:check && pnpm format:check && pnpm types:check",
+    "static:fix": "pnpm lint:fix && pnpm format:fix",
+    "types:check": "pnpm types --noEmit",
+    "types": "tsc",
+    "update:release": "pnpm version --allow-same-version=true --git-tag-version=true --new-version $v"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.3",
-    "cross-env": "^7.0.2",
-    "eslint": "^7.8.0",
-    "eslint-config-standard": "^15.0.1",
-    "eslint-config-standard-react": "^10.0.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^11.0.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.17.0",
-    "eslint-plugin-standard": "^4.0.1",
-    "gh-pages": "^3.1.0",
-    "microbundle-crl": "^0.13.10",
-    "npm-run-all": "^4.1.5",
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0",
-    "react-scripts": "^4.0.0"
+    "@parcel/packager-ts": "^2.9.3",
+    "@parcel/transformer-typescript-types": "^2.9.3",
+    "@typescript-eslint/eslint-plugin": "^5.60.0",
+    "@typescript-eslint/parser": "^5.60.0",
+    "eslint": "^8.0.1",
+    "eslint-config-next": "^13.4.7",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-standard-with-typescript": "^36.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.32.2",
+    "parcel": "^2.9.3",
+    "prettier": "^3.0.0",
+    "typescript": "^5.1.6"
   },
-  "files": [
-    "dist"
-  ]
+  "peerDependencies": {
+    "html-to-image": ">=1.5.0",
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
+  }
 }

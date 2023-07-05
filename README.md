@@ -1,13 +1,12 @@
-# react-to-image
+<img src="public/cover.png" width="100%" align="center" />
 
 <div align="center">
-  <img src="public/cover.png" width="100%" align="center" />
 
-[![Version](https://img.shields.io/npm/v/@hcorta/react-to-image.svg?style=flat-square&logo=appveyor)](https://www.npmjs.com/package/@hcorta/react-to-image)
-[![Size](https://img.shields.io/bundlephobia/minzip/@hcorta/react-to-image?style=flat-square)](https://bundlephobia.com/result?p=@hcorta/react-to-image)
-[![NPM](https://img.shields.io/npm/dm/@hcorta/react-to-image.svg?style=flat-square&logo=appveyor)](https://www.npmjs.com/package/@hcorta/react-to-image)
-
-A React hook for converting any component to image
+[![NPM](https://img.shields.io/npm/dm/@hugocxl/react-to-image.svg?&logo=npm)](https://www.npmjs.com/package/@hugocxl/react-to-image)
+[![Version](https://img.shields.io/npm/v/@hugocxl/react-to-image.svg?logo=npm)](https://www.npmjs.com/package/@hugocxl/react-to-image)
+[![Size](https://img.shields.io/bundlephobia/minzip/@hugocxl/react-to-image)](https://bundlephobia.com/result?p=@hugocxl/react-to-image)
+[![LANGUAGE](https://img.shields.io/badge/language-TypeScript-blue.svg)](https://www.typescriptlang.org)
+[![LICENSE](https://img.shields.io/github/license/hugocxl/react-to-image)](https://www.npmjs.com/package/@hugocxl/react-to-image)
 
 </div>
 
@@ -15,98 +14,229 @@ A React hook for converting any component to image
 
 ## Table of Contents
 
-- [Installation](#Installation)
-- [Usage](#Usage)
-- [Props](#Props)
-- [Contributing](#Contributing)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Docs](#docs)
+  - [Ref](#ref)
+  - [Fn](#fn)
+  - [State](#state)
+  - [Option](#options)
+- [Contributing](#contributing)
 - [Code of Conduct](#code-of-conduct)
-- [License](#License)
+- [License](#license)
 
 ## Installation
 
-In order to use **`@hcorta/react-to-image`**, all you need to do is install the npm package:
+In order to use **`@hugocxl/react-to-image`**, all you need to do is install the
+npm package:
 
 ```sh
-yarn add @hcorta/react-to-image
+pnpm add @hugocxl/react-to-image
 ```
 
-> **`html-to-image`** and **`react`** are **peerDependencies** of **`react-to-image`**, you may **install your own versions**.
-
-### Deprecation warning ⚠️
-
-```sh
-react-to-image is deprecated => use @hcorta/react-to-image instead
-```
+> **`html-to-image`** and **`react`** are **peerDependencies** of
+> **`react-to-image`**, you may **install your own versions**.
 
 ## Introduction
 
-[html-to-image](https://github.com/bubkoo/html-to-image) is a fantastic library that generates an image from a DOM node using HTML5 canvas and SVG.
+`html-to-image` is an invaluable utility library that enables the generation of
+images from a DOM node utilising the power of HTML5 canvas and SVG. It provides
+a seamless way to convert HTML elements into visual representations.
 
-**`@hcorta/react-to-image`** is an abstraction wrapper built with [React](https://facebook.github.io/react/) on top of **`html-to-image`**.
+`react-to-image` further enhances the integration of `html-to-image` with React
+leveraging the capabilities of `html-to-image` and offering a simplified and
+intuitive approach for generating images from React components using hooks.
 
 ## Usage
 
-To start using `@hcorta/react-to-image`, you just need to import the **`useToImage`** hook from the root folder. Check the [options](#Options) section out for more info:
+To start using `@hugocxl/react-to-image`, you just need to import any of the
+hooks from the package.
 
-```jsx
-import { useToImage } from '@hcorta/react-to-image'
+```tsx
+import { useToSvg } from '@hugocxl/react-to-image'
 
-export function MyComponent() {
-  const { ref, isLoading, getSvg } = useToImage()
+function App() {
+  const [ref, convertToSvg] = useToSvg<HTMLDivElement>({
+    onSuccess: data => {
+      console.log(data)
+    }
+  })
 
   return (
     <div ref={ref}>
-      <h1>My title</h1>
-      <button onClick={getSvg}>Download SVG</button>
-      {isLoading && 'loading...'}
+      <h1>Title</h1>
+      <button onClick={convertToSvg}>Convert to PNG</button>
     </div>
   )
 }
 ```
 
-## Props
+The current hooks are being exported:
 
-```jsx
-const {
-  ref,
-  isLoading,
-  error,
-  dataURL,
-  getSvg,
-  getPng,
-  getJpeg,
-  getBlob,
-  getPixelData,
-  getCanvas
-} = useToImage(options, callback)
+- useToSvg
+- useToPng
+- useToJpeg
+- useToCanvas
+- useToBlob
+
+### Download
+
+Some hooks are provided to ease the download, being a frequent use case
+
+```tsx
+import { useDownloadAsPng } from '@hugocxl/react-to-image'
+
+function App() {
+  const [ref, downloadAsPng, { isLoading }] = useDownloadAsPng<HTMLDivElement>()
+
+  return (
+    <div ref={ref}>
+      <h1>Title</h1>
+      <button onClick={downloadAsPng}>Convert to PNG</button>
+      {isLoading && <div>Loading...</div>}
+    </div>
+  )
+}
+```
+
+The current hooks are being exported:
+
+- useDownloadAsSvg
+- useDownloadAsPng
+- useDownloadAsJpeg
+- useDownloadAsCanvas
+- useDownloadAsBlob
+
+The default function used to download the image is:
+
+```ts
+function download(data) {
+  const link = document.createElement('a')
+  link.download = `${fileName}.${format}`
+  link.href = data
+  link.click()
+}
+```
+
+## Docs
+
+```tsx
+const [ref, fn, state] = hook(options)
+```
+
+### Ref
+
+The ref to be passed down to the HTML element that you want to capture as an
+image.
+
+### Fn
+
+The function to be called to convert the image.
+
+### State
+
+| name        |    type     | description                                                                                                                             |
+| ----------- | :---------: | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `isIdle`    | **boolean** | if the conversion is idle. It's only true if no conversion has been initialized yet                                                     |
+| `isLoading` | **boolean** | If the conversion is currently being done                                                                                               |
+| `isError`   | **boolean** | If the conversion has failed                                                                                                            |
+| `isSuccess` | **boolean** | If the conversion has succesfully finished                                                                                              |
+| `error`     |   **any**   | If the conversion attempt resulted in an error. The corresponding `error` property has the error received from the attempted conversion |
+| `data`      |   **any**   | The last successfully resolved data for the conversion                                                                                  |
+
+```tsx
+import { useDownloadAsPng } from '@hugocxl/react-to-image'
+
+function App() {
+  const [ref, downloadAsPng, { error, isError, isLoading }] =
+    useDownloadAsPng<HTMLDivElement>()
+
+  return (
+    <div ref={ref}>
+      <h1>Title</h1>
+      <button onClick={downloadAsPng}>Convert to PNG</button>
+
+      {isLoading && <span>Loading...</span>}
+      {isError && (
+        <details>
+          <summary>There was an error converting the image</summary>
+          <div>{error.message}</div>
+        </details>
+      )}
+    </div>
+  )
+}
 ```
 
 ### Options
 
-| name               |     type     |    default     | description                                                                                                                                                                                   |
-| ------------------ | :----------: | :------------: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `width`            |  **number**  |      null      | Width in pixels to be applied to node before rendering.                                                                                                                                       |
-| `height`           |  **number**  |      null      | Height in pixels to be applied to node before rendering.                                                                                                                                      |
-| `backgroundColor`  |  **string**  |      ''        |  A string value for the background color, any valid CSS color value.                                                                                                                          |
-| `style`            |  **object**  |       {}       | Styles object to be merged with node's style before rendering.                                                                                                                                |
-| `quality`          |  **number**  | `1.0` (`100%`) | A number between `0` and `1` indicating image quality (e.g. `0.92` => `92%`) of the JPEG image.                                                                                               |
-| `cacheBust`        |  **boolen**  |     false      | Set to true to append the current time as a query string to URL requests to enable cache busting.                                                                                             |
-| `imagePlaceholder` | **dataURL**  |       ''       | A data URL for a placeholder image that will be used when fetching an image fails. Defaults to an empty string and will render empty areas for failed images.                                 |
-| `pixelRatio`       |  **number**  |       1        | The pixel ratio of the captured image. Defalut use the actual pixel ratio of the device. Set `1` to use as initial-scale `1` for the image.                                                   |
-| `filter`           | **function** |      null      | A function taking DOM node as argument. Should return true if passed node should be included in the output. Excluding node means excluding it's children as well.Not called on the root node. |
+Apart from the following, you have all the options available to
+[`html-to-image`](https://github.com/bubkoo/html-to-image/tree/master#options)
 
-### Callback
+| name        |    type     | description                                                |
+| ----------- | :---------: | ---------------------------------------------------------- |
+| `onStart`   | **boolean** | Callback called if the conversion is starting              |
+| `onSuccess` | **boolean** | Callback called if the conversion has finished succesfully |
+| `onError`   | **boolean** | Callback called if the conversion has thrown an error      |
 
-Function to be called when any of the getters (getPng, getSvg,...) has finished converting the passed ref. Default to donwload as link.
+```tsx
+import { useToPng } from '@hugocxl/react-to-image'
+
+function App() {
+  const [ref, toPng] = useToPng<HTMLDivElement>({
+    backgroundColor: 'red',
+    quality: 0.5,
+    // ...rest of html-to-image options
+    onStart: () => console.log('Starting'),
+    onSuccess: data => console.log('Success', data),
+    onError: error => console.log('Error', error)
+  })
+
+  return (
+    <div ref={ref}>
+      <h1>Title</h1>
+      <button onClick={toPng}>Convert to PNG</button>
+    </div>
+  )
+}
+```
+
+## Examples
+
+### Clip to clipboard
+
+Convert a component to a PNG and copy the image to the clipboard
+
+```tsx
+import { useToPng } from '@hugocxl/react-to-image'
+
+export default function App() {
+  const [ref, onClickButton, { isSuccess }] = useToPng<HTMLDivElement>({
+    onSuccess: data => navigator.clipboard.writeText(data)
+  })
+
+  return (
+    <div ref={ref}>
+      <h1>Title</h1>
+      <button onClick={onClickButton}>Copy to clipboard</button>
+
+      {isSuccess && <span>Image copied to the clipboard!</span>}
+    </div>
+  )
+}
+```
 
 ## Contributing
 
-No one’s perfect. If you’ve found any errors, want to suggest enhancements, or expand on a topic, please feel free to open an Issue or collaborate by PR.
+No one’s perfect. If you’ve found any errors, want to suggest enhancements, or
+expand on a topic, please feel free to open an Issue or collaborate by PR.
 
 ## Code of Conduct
 
-[Contributor Code of Conduct](public/docs/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+[Contributor Code of Conduct](public/docs/CODE_OF_CONDUCT.md). By participating
+in this project you agree to abide by its terms.
 
 ## License
 
-**@hcorta/react-to-image** is open source software licensed as MIT © [Hugo Corta](https://github.com/hcorta).
+**@hugocxl/react-to-image** is open source software licensed as MIT ©
+[Hugo Corta](https://github.com/hugocxl).
