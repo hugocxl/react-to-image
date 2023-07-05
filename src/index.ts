@@ -39,7 +39,7 @@ type HookState<F extends LibFn> = {
   data: LibFnReturn<F> | null
 }
 
-function generateHook<F extends LibFn>(
+export function generateHook<F extends LibFn>(
   fn: F,
   downloadFn?: (data: LibFnReturn<F>) => void
 ) {
@@ -72,12 +72,11 @@ function generateHook<F extends LibFn>(
 
       if (options?.onStart) options.onStart()
 
-      if (!nodeRef.current) {
-        console.error('No ref was provided')
-        return null
-      }
-
       try {
+        if (!nodeRef.current) {
+          throw new Error('No ref was provided')
+        }
+
         const data = (await fn(nodeRef?.current, options)) as LibFnReturn<F>
 
         setState({

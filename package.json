@@ -37,6 +37,7 @@
   "scripts": {
     "dev": "parcel watch",
     "build": "parcel build",
+    "test": "jest",
     "format:check": "pnpm format --list-different",
     "format:fix": "pnpm format --write",
     "format": "prettier --cache --ignore-path .gitignore .",
@@ -54,6 +55,11 @@
   "devDependencies": {
     "@parcel/packager-ts": "^2.9.3",
     "@parcel/transformer-typescript-types": "^2.9.3",
+    "@testing-library/dom": "^9.3.1",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/react-hooks": "^8.0.1",
+    "@types/jest": "^29.5.2",
     "@typescript-eslint/eslint-plugin": "^5.60.0",
     "@typescript-eslint/parser": "^5.60.0",
     "eslint": "^8.0.1",
@@ -64,13 +70,18 @@
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.32.2",
+    "jest": "^29.6.0",
     "parcel": "^2.9.3",
     "prettier": "^3.0.0",
+    "ts-jest": "^29.1.1",
     "typescript": "^5.1.6"
   },
   "peerDependencies": {
     "html-to-image": ">=1.5.0",
     "react": ">=16.0.0",
     "react-dom": ">=16.0.0"
+  },
+  "dependencies": {
+    "jest-environment-jsdom": "^29.6.0"
   }
 }
