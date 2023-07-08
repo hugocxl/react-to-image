@@ -10,7 +10,15 @@
 
 </div>
 
----
+## Features
+
+- ✨ **Simple**: is simple to use and has no external dependencies at all
+- 🌱 **Lightweight**: just 797b gzipped
+- 💎 **TypeScript**: full-written in TypeScript
+- 🚀 **React Hooks**
+- ⚛️ **State Management** - Control conversion states
+- ⌛️ **Async Logic** – Event handlers for asynchronous logic
+- 🏆 **MIT Licensed**: free for personal and commercial use
 
 ## Table of Contents
 
@@ -45,7 +53,7 @@ a seamless way to convert HTML elements into visual representations.
 
 `react-to-image` further enhances the integration of `html-to-image` with React
 leveraging the capabilities of `html-to-image` and offering a simplified and
-intuitive approach for generating images from React components using hooks.
+intuitive approach for generating images from React components.
 
 ## Usage
 
@@ -240,3 +248,7 @@ in this project you agree to abide by its terms.
 
 **@hugocxl/react-to-image** is open source software licensed as MIT ©
 [Hugo Corta](https://github.com/hugocxl).
+
+---
+
+**Made with ♥ by [@hugocxl](https://hugocxl.me)**

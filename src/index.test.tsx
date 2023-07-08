@@ -1,4 +1,4 @@
-import { useToPng, useDownloadAsPng } from './index'
+import { useToPng } from './index'
 import '@testing-library/jest-dom/extend-expect'
 import { renderHook, act } from '@testing-library/react-hooks'
 import { render } from '@testing-library/react'

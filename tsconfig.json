@@ -25,6 +25,5 @@
     "strictFunctionTypes": true,
     "strictNullChecks": false,
     "target": "esnext"
-  },
-  "include": ["src"]
+  }
 }

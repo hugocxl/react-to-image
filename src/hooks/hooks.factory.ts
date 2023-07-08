@@ -1,0 +1,93 @@
+import { useReducer, useRef } from 'react'
+import { LibFn, LibFnReturn } from '../shared/types'
+import { INITIAL_STATE } from './hooks.constants'
+import {
+  HookExtendedState,
+  HookOptions,
+  HookReturn,
+  HookState,
+  HookStateReducer,
+  HookStateStatus
+} from './hooks.types'
+
+export function createHook<F extends LibFn>(libFn: F) {
+  const stateReducer: HookStateReducer<F> = (state, action) => {
+    switch (action.type) {
+      case HookStateStatus.Loading:
+        return { ...state, status: HookStateStatus.Loading }
+      case HookStateStatus.Success:
+        return { ...state, status: HookStateStatus.Success, data: action.data }
+      case HookStateStatus.Error:
+        return {
+          ...state,
+          status: HookStateStatus.Error,
+          error: action.error
+        }
+      default:
+        return state
+    }
+  }
+
+  function getExtendedState({
+    status,
+    ...state
+  }: HookState<F>): HookExtendedState<F> {
+    return {
+      ...state,
+      status,
+      isError: status === HookStateStatus.Error,
+      isLoading: status === HookStateStatus.Loading,
+      isSuccess: status === HookStateStatus.Success,
+      isIdle: status === HookStateStatus.Idle
+    }
+  }
+
+  return function <E = unknown>(options?: HookOptions<F>): HookReturn<F, E> {
+    const nodeRef = useRef<E>()
+    const [state, dispatchAction] = useReducer(stateReducer, INITIAL_STATE)
+    const extendedState = getExtendedState(state)
+
+    function setNodeRef(node: E): void {
+      if (!nodeRef.current && node) nodeRef.current = node
+    }
+
+    async function getImage(): Promise<LibFnReturn<F> | null> {
+      try {
+        if (!nodeRef.current) {
+          throw new Error('A ref must be assigned to the component')
+        }
+        if (options?.onStart) options.onStart()
+
+        dispatchAction({ type: HookStateStatus.Loading })
+
+        if (options?.onLoading) options.onLoading()
+
+        const data = (await libFn(
+          nodeRef?.current as HTMLElement,
+          options
+        )) as LibFnReturn<F>
+
+        dispatchAction({ type: HookStateStatus.Success, data })
+
+        if (options?.onSuccess) options.onSuccess(data)
+      } catch (error) {
+        const message = (error as Error)?.message || 'Unknown error'
+        console.error('Error generating image from component:', message)
+
+        dispatchAction({ type: HookStateStatus.Error, error: message })
+
+        if (options?.onError) options.onError(error)
+
+        return null
+      }
+    }
+
+    return [
+      setNodeRef,
+      () => {
+        getImage()
+      },
+      extendedState
+    ]
+  }
+}
