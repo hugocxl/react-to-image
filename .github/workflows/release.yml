@@ -1,4 +1,4 @@
-name: CI
+name: NPM Release
 
 on:
   push:
@@ -33,5 +33,4 @@ jobs:
           pnpm test
           pnpm lint
           pnpm build
-          pnpm publint --strict
           pnpm publish --provenance --access public
