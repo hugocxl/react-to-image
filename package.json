@@ -24,7 +24,7 @@
     "build": "pnpm clean && pnpm bundle",
     "bundle": "rollup -c",
     "clean": "rm -rf ./dist",
-    "test": "jest",
+    "test": "jest --coverage",
     "changelog": "npx conventional-changelog-cli conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "postchangelog": "git add CHANGELOG.md && git commit -m 'CHANGELOG'",
     "preversion": "pnpm test && pnpm i && pnpm build && pnpm changelog && pnpm postchangelog",
