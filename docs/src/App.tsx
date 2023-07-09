@@ -2,20 +2,25 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { useToSvg } from '@hugocxl/react-to-image'
+import { useToPng } from '@hugocxl/react-to-image'
 
 function App() {
   const [count, setCount] = useState(0)
-  const [ref, getSvg, state] = useToSvg<HTMLDivElement>({
-    backgroundColor: 'white',
+  const [state, getSvg, ref] = useToPng<HTMLDivElement>({
+    backgroundColor: 'black',
     onStart: () => console.log('onStart'),
     onError: () => console.log('onError'),
-    onSuccess: () => console.log('onSuccess')
+    onSuccess: data => {
+      const link = document.createElement('a')
+      link.download = `${'hola'}.${'png'}`
+      link.href = data
+      link.click()
+    }
   })
 
   return (
-    <div>
-      <div ref={ref}>
+    <div ref={ref}>
+      <div>
         <div>
           <a href='https://vitejs.dev' target='_blank'>
             <img src={viteLogo} className='logo' alt='Vite logo' />
@@ -33,35 +38,11 @@ function App() {
             Edit <code>src/App.tsx</code> and save to test HMR
           </p>
         </div>
-        <p className='read-the-docs'>{JSON.stringify(state)}</p>
+        <p>{state.status}</p>
         <button onClick={getSvg}>donwload</button>
       </div>
-      {/* <ComponentA />
-      <ComponentB /> */}
     </div>
   )
 }
-
-// function ComponentA() {
-//   const [ref] = useToSvgContext()
-
-//   return (
-//     <div ref={ref}>
-//       <h1>Component A</h1>
-//       <p>Edit and save to test HMR</p>
-//     </div>
-//   )
-// }
-
-// function ComponentB() {
-//   const [_, getSvg] = useToSvgContext()
-
-//   return (
-//     <div>
-//       <h1>Component B</h1>
-//       <button onClick={getSvg}>donwload</button>
-//     </div>
-//   )
-// }
 
 export default App

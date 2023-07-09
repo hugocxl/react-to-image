@@ -5,6 +5,8 @@
 [![NPM](https://img.shields.io/npm/dm/@hugocxl/react-to-image.svg?&logo=npm)](https://www.npmjs.com/package/@hugocxl/react-to-image)
 [![Version](https://img.shields.io/npm/v/@hugocxl/react-to-image.svg?logo=npm)](https://www.npmjs.com/package/@hugocxl/react-to-image)
 [![Size](https://img.shields.io/bundlephobia/minzip/@hugocxl/react-to-image)](https://bundlephobia.com/result?p=@hugocxl/react-to-image)
+[![Build](https://img.shields.io/github/actions/workflow/status/hugocxl/react-to-image/ci.yml?branch=master)](https://bundlephobia.com/result?p=@hugocxl/react-to-image)
+[![TESTS](https://img.shields.io/badge/language-TypeScript-blue.svg)](https://coveralls.io/github/hugocxl/react-to-image)
 [![LANGUAGE](https://img.shields.io/badge/language-TypeScript-blue.svg)](https://www.typescriptlang.org)
 [![LICENSE](https://img.shields.io/github/license/hugocxl/react-to-image)](https://www.npmjs.com/package/@hugocxl/react-to-image)
 

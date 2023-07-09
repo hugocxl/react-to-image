@@ -2,6 +2,7 @@ import { useReducer, useRef } from 'react'
 import { LibFn, LibFnReturn } from '../shared/types'
 import { INITIAL_STATE } from './hooks.constants'
 import {
+  Hook,
   HookExtendedState,
   HookOptions,
   HookReturn,
@@ -10,7 +11,7 @@ import {
   HookStateStatus
 } from './hooks.types'
 
-export function createHook<F extends LibFn>(libFn: F) {
+export function createHook<F extends LibFn>(libFn: F): Hook<F> {
   const stateReducer: HookStateReducer<F> = (state, action) => {
     switch (action.type) {
       case HookStateStatus.Loading:
@@ -31,7 +32,7 @@ export function createHook<F extends LibFn>(libFn: F) {
   function getExtendedState({
     status,
     ...state
-  }: HookState<F>): HookExtendedState<F> {
+  }: HookState<LibFnReturn<F>>): HookExtendedState<LibFnReturn<F>> {
     return {
       ...state,
       status,
@@ -53,19 +54,19 @@ export function createHook<F extends LibFn>(libFn: F) {
 
     async function getImage(): Promise<LibFnReturn<F> | null> {
       try {
-        if (!nodeRef.current) {
+        if (!nodeRef.current && !options.selector) {
           throw new Error('A ref must be assigned to the component')
         }
+
         if (options?.onStart) options.onStart()
 
         dispatchAction({ type: HookStateStatus.Loading })
 
         if (options?.onLoading) options.onLoading()
 
-        const data = (await libFn(
-          nodeRef?.current as HTMLElement,
-          options
-        )) as LibFnReturn<F>
+        const element = (nodeRef.current ||
+          document.querySelector(options.selector)) as HTMLElement
+        const data = (await libFn(element, options)) as LibFnReturn<F>
 
         dispatchAction({ type: HookStateStatus.Success, data })
 
@@ -76,18 +77,18 @@ export function createHook<F extends LibFn>(libFn: F) {
 
         dispatchAction({ type: HookStateStatus.Error, error: message })
 
-        if (options?.onError) options.onError(error)
+        if (options?.onError) options.onError(message)
 
         return null
       }
     }
 
     return [
-      setNodeRef,
+      extendedState,
       () => {
         getImage()
       },
-      extendedState
+      setNodeRef
     ]
   }
 }

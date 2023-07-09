@@ -4,6 +4,7 @@ import { LibFn, LibFnReturn } from '../shared/types'
  * Options for the hook
  */
 export type HookOptions<F extends LibFn> = Parameters<F>[1] & {
+  selector?: Parameters<typeof document.querySelector>[0]
   /**
    * This function will fire before the conversion starts
    */
@@ -15,11 +16,11 @@ export type HookOptions<F extends LibFn> = Parameters<F>[1] & {
   /**
    * This function will fire if the conversion encounters an error and will be passed the error
    */
-  onError?: (error: any) => unknown
+  onError?: (error: string) => unknown
   /**
    * This function will fire when the conversion is successful and will be passed the conversion's result
    */
-  onSuccess?: (args: LibFnReturn<F>) => unknown
+  onSuccess?: (data: LibFnReturn<F>) => unknown
 }
 
 /**
@@ -27,17 +28,17 @@ export type HookOptions<F extends LibFn> = Parameters<F>[1] & {
  */
 export type HookReturn<F extends LibFn, E = unknown> = [
   /**
-   * Function to set the ref for the hook
+   * State of the hook
    */
-  (domNode: E) => void,
+  HookExtendedState<LibFnReturn<F>>,
   /**
    * Function to start the conversion
    */
   () => void,
   /**
-   * State of the hook
+   * Function to set the ref for the hook
    */
-  HookExtendedState<F>
+  (domNode: E) => void
 ]
 
 /**
@@ -53,7 +54,7 @@ export enum HookStateStatus {
 /**
  * State of the hook
  */
-export type HookState<F extends LibFn> = {
+export type HookState<D> = {
   /**
    * Current status of the conversion
    */
@@ -65,7 +66,7 @@ export type HookState<F extends LibFn> = {
   /**
    * The last successfully resolved data for the conversion
    */
-  data: LibFnReturn<F> | null
+  data: D | null
 }
 
 /**
@@ -93,7 +94,7 @@ export type HookDerivedState = {
 /**
  * Extended state of the hook
  */
-export type HookExtendedState<F extends LibFn> = HookState<F> & HookDerivedState
+export type HookExtendedState<D> = HookState<D> & HookDerivedState
 
 /**
  * Action to update the hook state
@@ -104,6 +105,10 @@ export type HookStateAction<F extends LibFn> =
   | { type: HookStateStatus.Error; error: string }
 
 export type HookStateReducer<F extends LibFn> = (
-  state: HookState<F>,
+  state: HookState<LibFnReturn<F>>,
   action: HookStateAction<F>
-) => HookState<F>
+) => HookState<LibFnReturn<F>>
+
+export type Hook<F extends LibFn> = <E = unknown>(
+  options?: HookOptions<F>
+) => HookReturn<F, E>
