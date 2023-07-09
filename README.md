@@ -5,10 +5,10 @@
 [![NPM](https://img.shields.io/npm/dm/@hugocxl/react-to-image.svg?&logo=npm)](https://www.npmjs.com/package/@hugocxl/react-to-image)
 [![Version](https://img.shields.io/npm/v/@hugocxl/react-to-image.svg?logo=npm)](https://www.npmjs.com/package/@hugocxl/react-to-image)
 [![Size](https://img.shields.io/bundlephobia/minzip/@hugocxl/react-to-image)](https://bundlephobia.com/result?p=@hugocxl/react-to-image)
-[![Build](https://img.shields.io/github/actions/workflow/status/hugocxl/react-to-image/ci.yml?branch=master)](https://bundlephobia.com/result?p=@hugocxl/react-to-image)
-[![TESTS](https://img.shields.io/badge/language-TypeScript-blue.svg)](https://coveralls.io/github/hugocxl/react-to-image)
-[![LANGUAGE](https://img.shields.io/badge/language-TypeScript-blue.svg)](https://www.typescriptlang.org)
-[![LICENSE](https://img.shields.io/github/license/hugocxl/react-to-image)](https://www.npmjs.com/package/@hugocxl/react-to-image)
+[![Build](https://img.shields.io/github/actions/workflow/status/hugocxl/react-to-image/release.yml?branch=master)](https://github.com/hugocxl/react-to-image/actions/workflows/release.yml)
+[![Tests Coverage](https://img.shields.io/coverallsCoverage/github/hugocxl/react-to-image)](https://coveralls.io/github/hugocxl/react-to-image)
+[![Language](https://img.shields.io/badge/language-TypeScript-blue.svg)](https://www.typescriptlang.org)
+[![License](https://img.shields.io/github/license/hugocxl/react-to-image)](https://www.npmjs.com/package/@hugocxl/react-to-image)
 
 </div>
 
@@ -18,8 +18,8 @@
 - 🌱 **Lightweight**: just 797b gzipped
 - 💎 **TypeScript**: full-written in TypeScript
 - 🚀 **React Hooks**
-- ⚛️ **State Management** - Control conversion states
-- ⌛️ **Async Logic** – Event handlers for asynchronous logic
+- ⚛️ **State Management**: Control conversion states
+- ⌛️ **Async Logic**: Event handlers for asynchronous logic
 - 🏆 **MIT Licensed**: free for personal and commercial use
 
 ## Table of Contents
