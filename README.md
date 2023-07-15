@@ -15,21 +15,21 @@
 ## Features
 
 - ✨ **Simple**: is simple to use and has no external dependencies at all
-- 🌱 **Lightweight**: just 797b gzipped
+- 🌱 **Lightweight**: just 869b gzipped
 - 💎 **TypeScript**: full-written in TypeScript
-- 🚀 **React Hooks**
-- ⚛️ **State Management**: Control conversion states
-- ⌛️ **Async Logic**: Event handlers for asynchronous logic
+- ⚛️ **State Management**: control conversion states
+- ⌛️ **Async Logic**: event handlers for asynchronous logic
 - 🏆 **MIT Licensed**: free for personal and commercial use
+- 🚀 **React Hooks**
 
 ## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
 - [Docs](#docs)
+  - [State](#state)
   - [Ref](#ref)
   - [Fn](#fn)
-  - [State](#state)
   - [Option](#options)
 - [Contributing](#contributing)
 - [Code of Conduct](#code-of-conduct)
@@ -49,11 +49,11 @@ pnpm add @hugocxl/react-to-image
 
 ## Introduction
 
-`html-to-image` is an invaluable utility library that enables the generation of
+[`html-to-image`](https://github.com/bubkoo/html-to-image/tree/master#options) is an invaluable utility library that enables the generation of
 images from a DOM node utilising the power of HTML5 canvas and SVG. It provides
 a seamless way to convert HTML elements into visual representations.
 
-`react-to-image` further enhances the integration of `html-to-image` with React
+**`react-to-image`** further enhances the integration of this library with React
 leveraging the capabilities of `html-to-image` and offering a simplified and
 intuitive approach for generating images from React components.
 
@@ -66,7 +66,7 @@ hooks from the package.
 import { useToSvg } from '@hugocxl/react-to-image'
 
 function App() {
-  const [ref, convertToSvg] = useToSvg<HTMLDivElement>({
+  const [state, convertToSvg, ref] = useToSvg<HTMLDivElement>({
     onSuccess: data => {
       console.log(data)
     }
@@ -74,109 +74,49 @@ function App() {
 
   return (
     <div ref={ref}>
-      <h1>Title</h1>
+      <h1>My component</h1>
       <button onClick={convertToSvg}>Convert to PNG</button>
     </div>
   )
 }
 ```
 
-The current hooks are being exported:
-
-- useToSvg
-- useToPng
-- useToJpeg
-- useToCanvas
-- useToBlob
-
-### Download
-
-Some hooks are provided to ease the download, being a frequent use case
-
-```tsx
-import { useDownloadAsPng } from '@hugocxl/react-to-image'
-
-function App() {
-  const [ref, downloadAsPng, { isLoading }] = useDownloadAsPng<HTMLDivElement>()
-
-  return (
-    <div ref={ref}>
-      <h1>Title</h1>
-      <button onClick={downloadAsPng}>Convert to PNG</button>
-      {isLoading && <div>Loading...</div>}
-    </div>
-  )
-}
-```
-
-The current hooks are being exported:
-
-- useDownloadAsSvg
-- useDownloadAsPng
-- useDownloadAsJpeg
-- useDownloadAsCanvas
-- useDownloadAsBlob
-
-The default function used to download the image is:
-
-```ts
-function download(data) {
-  const link = document.createElement('a')
-  link.download = `${fileName}.${format}`
-  link.href = data
-  link.click()
-}
-```
-
 ## Docs
 
+### Hooks
+
 ```tsx
-const [ref, fn, state] = hook(options)
+const [state: State, fn: Fn, ref: Ref] = hook<HtmlElement>(options: Options)
 ```
 
-### Ref
+The current hooks are being exported:
 
-The ref to be passed down to the HTML element that you want to capture as an
-image.
-
-### Fn
-
-The function to be called to convert the image.
+- `useToSvg`
+- `useToPng`
+- `useToJpeg`
+- `useToCanvas`
+- `useToBlob`
 
 ### State
 
 | name        |    type     | description                                                                                                                             |
 | ----------- | :---------: | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `isIdle`    | **boolean** | if the conversion is idle. It's only true if no conversion has been initialized yet                                                     |
-| `isLoading` | **boolean** | If the conversion is currently being done                                                                                               |
-| `isError`   | **boolean** | If the conversion has failed                                                                                                            |
-| `isSuccess` | **boolean** | If the conversion has succesfully finished                                                                                              |
-| `error`     |   **any**   | If the conversion attempt resulted in an error. The corresponding `error` property has the error received from the attempted conversion |
-| `data`      |   **any**   | The last successfully resolved data for the conversion                                                                                  |
+| **data**      | `ReturnType<fn>`  | The last successfully resolved data for the conversion                                                                                  |
+| **error**     | `string`  | If the conversion attempt resulted in an error. The corresponding `error` property has the error received from the attempted conversion |
+| **status**    | `string` | state of the conversion. Posible values: `IDLE`, `LOADING`, `SUCCESS`, `ERROR`                                                           |
+| **isIdle**    | `boolean` | if the conversion is idle. It's only true if no conversion has been initialized yet                                                     |
+| **isLoading** | `boolean` | If the conversion is currently being done                                                                                               |
+| **isError**   | `boolean` | If the conversion has failed                                                                                                            |
+| **isSuccess** | `boolean` | If the conversion has succesfully finished                                                                                              |
 
-```tsx
-import { useDownloadAsPng } from '@hugocxl/react-to-image'
+### Fn
 
-function App() {
-  const [ref, downloadAsPng, { error, isError, isLoading }] =
-    useDownloadAsPng<HTMLDivElement>()
+The function to be called to convert the image.
 
-  return (
-    <div ref={ref}>
-      <h1>Title</h1>
-      <button onClick={downloadAsPng}>Convert to PNG</button>
+### Ref
 
-      {isLoading && <span>Loading...</span>}
-      {isError && (
-        <details>
-          <summary>There was an error converting the image</summary>
-          <div>{error.message}</div>
-        </details>
-      )}
-    </div>
-  )
-}
-```
+The ref to be passed down to the HTML element that you want to capture as an
+image.
 
 ### Options
 
@@ -185,33 +125,79 @@ Apart from the following, you have all the options available to
 
 | name        |    type     | description                                                |
 | ----------- | :---------: | ---------------------------------------------------------- |
-| `onStart`   | **boolean** | Callback called if the conversion is starting              |
-| `onSuccess` | **boolean** | Callback called if the conversion has finished succesfully |
-| `onError`   | **boolean** | Callback called if the conversion has thrown an error      |
+| **selector**  | `string` | A valid `querySelector()` argument. If passed, the ref will be ommited              |
+| **onStart**   | `boolean` | Callback called if the conversion is starting              |
+| **onSuccess** | `boolean` | Callback called if the conversion has finished succesfully |
+| **onError**   | `boolean` | Callback called if the conversion has thrown an error      |
+
+## Examples
+
+### Using `selector`
+
+Use the selector option to specify the element that you want to capture instead of the ref. Useful if you need to convert elements that are far in the application structure.
 
 ```tsx
 import { useToPng } from '@hugocxl/react-to-image'
 
-function App() {
-  const [ref, toPng] = useToPng<HTMLDivElement>({
-    backgroundColor: 'red',
-    quality: 0.5,
-    // ...rest of html-to-image options
-    onStart: () => console.log('Starting'),
-    onSuccess: data => console.log('Success', data),
-    onError: error => console.log('Error', error)
+export default function App() {
+  const [state, convert] = useToPng<HTMLDivElement>({
+    selector: '#my-element',
+    onSuccess: data => console.log('Converted #my-element to PNG!', data),
   })
 
   return (
-    <div ref={ref}>
-      <h1>Title</h1>
-      <button onClick={toPng}>Convert to PNG</button>
+    <div>
+      <button onClick={convert}>Copy to clipboard</button>
     </div>
   )
 }
 ```
 
-## Examples
+### Using callbacks (onStart, onSuccess, onError)
+
+```tsx
+import { useToBlob } from '@hugocxl/react-to-image'
+
+export default function App() {
+  const [_, convert, ref] = useToBlob<HTMLDivElement>({
+    onStart: data => console.log('Starting...'),
+    onSuccess: data => console.log('Success', data),
+    onError: error => console.log('Error', error),
+  })
+
+  return (
+    <div ref={ref}>
+      <h1>My component</h1>
+      <button onClick={convert}>Download</button>
+    </div>
+  )
+}
+```
+
+### Save and download a compressed JPEG image
+
+```tsx
+import { useToPng } from '@hugocxl/react-to-image'
+
+export default function App() {
+  const [_, convert, ref] = useToPng<HTMLDivElement>({
+    quality: 0.8,
+    onSuccess: data => {
+      const link = document.createElement('a');
+      link.download = 'my-image-name.jpeg';
+      link.href = dataUrl;
+      link.click();
+    }
+  })
+
+  return (
+    <div ref={ref}>
+      <h1>My component</h1>
+      <button onClick={convert}>Download</button>
+    </div>
+  )
+}
+```
 
 ### Clip to clipboard
 
@@ -221,16 +207,81 @@ Convert a component to a PNG and copy the image to the clipboard
 import { useToPng } from '@hugocxl/react-to-image'
 
 export default function App() {
-  const [ref, onClickButton, { isSuccess }] = useToPng<HTMLDivElement>({
+  const [{ isSuccess }, convert, ref] = useToPng<HTMLDivElement>({
     onSuccess: data => navigator.clipboard.writeText(data)
   })
 
   return (
     <div ref={ref}>
-      <h1>Title</h1>
-      <button onClick={onClickButton}>Copy to clipboard</button>
+      <h1>My component</h1>
+      <button onClick={convert}>Copy to clipboard</button>
 
       {isSuccess && <span>Image copied to the clipboard!</span>}
+    </div>
+  )
+}
+```
+
+### Display an error message if the conversion fails
+
+```tsx
+import { useToSvg } from '@hugocxl/react-to-image'
+
+export default function App() {
+  const [{ isError, error }, convert, ref] = useToSvg<HTMLDivElement>()
+
+  return (
+    <div ref={ref}>
+    <button onClick={convert}>Convert</button>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+      </p>
+      
+      
+      {isError && <span>{`Sorry, there was an error converting the image: ${error}`}</span>}
+    </div>
+  )
+}
+```
+
+### Get a PNG image base64-encoded data URL and append it to the document
+
+```tsx
+import { useToPng } from '@hugocxl/react-to-image'
+
+export default function App() {
+  const [{ isLoading }, convert, ref] = useToPng<HTMLDivElement>({
+    onSuccess: data => {
+      const img = new Image();
+      img.src = dataUrl;
+      document.body.appendChild(img);
+    }
+  })
+
+  return (
+    <div ref={ref}>
+      <h1>My component</h1>
+      <button onClick={convert}>Inject image</button>
+      {isLoading && <span>Loading...</span>}
+    </div>
+  )
+}
+```
+
+### Get a HTMLCanvasElement, and display it right away
+
+```tsx
+import { useToCanvas } from '@hugocxl/react-to-image'
+
+export default function App() {
+  const [{ isLoading }, convert, ref] = useToCanvas<HTMLDivElement>({
+    onSuccess: canvas => document.body.appendChild(canvas);
+  })
+
+  return (
+    <div ref={ref}>
+      <h1>My component</h1>
+      <button onClick={convert}>Inject canvas</button>
     </div>
   )
 }

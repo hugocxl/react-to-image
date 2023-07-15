@@ -32,4 +32,3 @@ jobs:
           pnpm test
           pnpm lint
           pnpm build
-          pnpm publish --provenance --access public --no-git-checks

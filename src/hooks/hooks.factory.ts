@@ -54,8 +54,10 @@ export function createHook<F extends LibFn>(libFn: F): Hook<F> {
 
     async function getImage(): Promise<LibFnReturn<F> | null> {
       try {
-        if (!nodeRef.current && !options.selector) {
-          throw new Error('A ref must be assigned to the component')
+        if (!nodeRef.current && !options?.selector) {
+          throw new Error(
+            'A dom element must be selected: use the selector option or the ref'
+          )
         }
 
         if (options?.onStart) options.onStart()
@@ -64,8 +66,11 @@ export function createHook<F extends LibFn>(libFn: F): Hook<F> {
 
         if (options?.onLoading) options.onLoading()
 
-        const element = (nodeRef.current ||
-          document.querySelector(options.selector)) as HTMLElement
+        const element = (
+          options?.selector
+            ? document.querySelector(options.selector)
+            : nodeRef.current
+        ) as HTMLElement
         const data = (await libFn(element, options)) as LibFnReturn<F>
 
         dispatchAction({ type: HookStateStatus.Success, data })
