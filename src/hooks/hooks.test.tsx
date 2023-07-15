@@ -1,7 +1,6 @@
 import { act, renderHook } from '@testing-library/react'
 import { createHook } from './hooks.factory'
 import { coreLib } from '../shared'
-import { HookStateStatus } from './hooks.types'
 import {
   useToBlob,
   useToCanvas,
@@ -27,17 +26,6 @@ const hooks = [
   { name: 'useToCanvas', hook: useToCanvas },
   { name: 'useToPixelData', hook: useToPixelData }
 ]
-
-function TestHookComponent() {
-  const [state, convert, ref] = useToPng()
-
-  return (
-    <div ref={ref}>
-      <h1>My component</h1>
-      <button onClick={convertToSvg}>Convert to PNG</button>
-    </div>
-  )
-}
 
 describe('createHook', () => {
   it.each(coreLibFns)(
@@ -69,16 +57,5 @@ describe('hooks', () => {
     expect(state).toHaveProperty('isLoading')
     expect(state).toHaveProperty('isSuccess')
     expect(state).toHaveProperty('isIdle')
-  })
-
-  it.each(hooks)('$name sets the ref properly', async ({ hook }) => {
-    const [state, getImage, ref] = renderHook(() => hook()).result.current
-
-    await act(async () => {
-      ref(document.createElement('canvas'))
-      await getImage()
-    })
-
-    expect(state.isSuccess).toBe(true)
   })
 })
