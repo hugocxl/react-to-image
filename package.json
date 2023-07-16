@@ -2,7 +2,7 @@
   "name": "@hugocxl/react-to-image",
   "description": "Transform your React components into images",
   "productName": "@hugocxl/react-to-image",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "private": false,
   "author": "hugocxl (http://github.com/hugocxl)",
