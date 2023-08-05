@@ -33,7 +33,3 @@ jobs:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create patch version
-        run: pnpm version patch
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
