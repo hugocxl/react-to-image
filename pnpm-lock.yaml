@@ -39,7 +39,7 @@ devDependencies:
     version: 8.48.0
   eslint-config-next:
     specifier: ^13.4.12
-    version: 13.4.15(eslint@8.48.0)(typescript@5.2.2)
+    version: 13.4.19(eslint@8.48.0)(typescript@5.2.2)
   eslint-config-prettier:
     specifier: ^9.0.0
     version: 9.0.0(eslint@8.48.0)
@@ -979,8 +979,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
-  /@next/eslint-plugin-next@13.4.15:
-    resolution: {integrity: sha512-R+cOYbVyJM30d4OaDgRSCbtqsaoHfjnRUUuKxm74rswR82mv0c8En7+SXXsEfIpLCmGNSqOP5zF8aEE5e09VQQ==}
+  /@next/eslint-plugin-next@13.4.19:
+    resolution: {integrity: sha512-N/O+zGb6wZQdwu6atMZHbR7T9Np5SUFUjZqCbj0sXm+MwQO35M8TazVB4otm87GkXYs2l6OPwARd3/PUWhZBVQ==}
     dependencies:
       glob: 7.1.7
     dev: true
@@ -2258,8 +2258,8 @@ packages:
       source-map: 0.6.1
     dev: true
 
-  /eslint-config-next@13.4.15(eslint@8.48.0)(typescript@5.2.2):
-    resolution: {integrity: sha512-OSD4YQMSR8KvnTIQErCpFnXjElZEmXP8KgAXU3/8oGfKFa4dexRZtZl8DKs9M0dO5J3HHhD6I2pdHvICEuB5FQ==}
+  /eslint-config-next@13.4.19(eslint@8.48.0)(typescript@5.2.2):
+    resolution: {integrity: sha512-WE8367sqMnjhWHvR5OivmfwENRQ1ixfNE9hZwQqNCsd+iM3KnuMc1V8Pt6ytgjxjf23D+xbesADv9x3xaKfT3g==}
     peerDependencies:
       eslint: ^7.23.0 || ^8.0.0
       typescript: '>=3.3.1'
@@ -2267,7 +2267,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@next/eslint-plugin-next': 13.4.15
+      '@next/eslint-plugin-next': 13.4.19
       '@rushstack/eslint-patch': 1.3.2
       '@typescript-eslint/parser': 5.62.0(eslint@8.48.0)(typescript@5.2.2)
       eslint: 8.48.0
