@@ -1,15 +1,20 @@
+// Dependencies
 import { useReducer, useRef } from 'react'
-import { LibFn, LibFnReturn } from '../shared/types'
-import { INITIAL_STATE } from './hooks.constants'
-import {
+
+// Constants
+import { INITIAL_STATE } from './constants'
+
+// Types
+import { HookStateStatus } from './types'
+import type { LibFn, LibFnReturn } from '../types'
+import type {
   Hook,
   HookExtendedState,
   HookOptions,
   HookReturn,
   HookState,
-  HookStateReducer,
-  HookStateStatus
-} from './hooks.types'
+  HookStateReducer
+} from './types'
 
 export function createHook<F extends LibFn>(libFn: F): Hook<F> {
   const stateReducer: HookStateReducer<F> = (state, action) => {
@@ -76,6 +81,8 @@ export function createHook<F extends LibFn>(libFn: F): Hook<F> {
         dispatchAction({ type: HookStateStatus.Success, data })
 
         if (options?.onSuccess) options.onSuccess(data)
+
+        return data
       } catch (error) {
         const message = (error as Error)?.message || 'Unknown error'
         console.error('Error generating image from component:', message)

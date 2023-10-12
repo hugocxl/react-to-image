@@ -1,5 +1,5 @@
-import { createHook } from './hooks.factory'
-import { coreLib } from '../shared'
+import { createHook } from './factory'
+import { coreLib } from '../lib'
 
 export const useToSvg = createHook<typeof coreLib.toSvg>(coreLib.toSvg)
 

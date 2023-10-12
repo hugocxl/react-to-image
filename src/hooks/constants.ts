@@ -1,4 +1,4 @@
-import { HookStateStatus } from './hooks.types'
+import { HookStateStatus } from './types'
 
 export const INITIAL_STATE = {
   status: HookStateStatus.Idle,

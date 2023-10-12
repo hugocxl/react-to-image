@@ -1,4 +1,4 @@
-import { LibFn, LibFnReturn } from '../shared/types'
+import type { LibFn, LibFnReturn } from '../types'
 
 /**
  * Options for the hook
@@ -62,7 +62,7 @@ export type HookState<D> = {
   /**
    * Error message if an error occurred
    */
-  error: string
+  error: string | null
   /**
    * The last successfully resolved data for the conversion
    */

@@ -1,6 +1,6 @@
-import { act, renderHook } from '@testing-library/react'
-import { createHook } from './hooks.factory'
-import { coreLib } from '../shared'
+import { renderHook } from '@testing-library/react'
+import { createHook } from './factory'
+import { coreLib } from '../lib'
 import {
   useToBlob,
   useToCanvas,

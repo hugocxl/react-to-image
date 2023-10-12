@@ -1,5 +1,11 @@
-build/
-dist/
-node_modules/
-.snapshots/
-*.min.js
+dist
+node_modules
+coverage
+.next
+build
+pnpm-lock.yaml
+*.d.ts
+*.js
+*.md
+*.css
+*.cjs
