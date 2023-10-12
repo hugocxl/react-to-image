@@ -1,3 +1,7 @@
+## [0.0.8](https://github.com/hugocxl/react-to-image/compare/v0.0.7...v0.0.8) (2023-10-12)
+
+
+
 ## [0.0.7](https://github.com/hugocxl/react-to-image/compare/v0.0.6...v0.0.7) (2023-10-12)
 
 
