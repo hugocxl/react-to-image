@@ -15,7 +15,7 @@
 ## Features
 
 - ✨ **Simple**: is simple to use and has no external dependencies at all
-- 🌱 **Lightweight**: just 869b gzipped
+- 🌱 **Lightweight**: just 983b gzipped
 - 💎 **TypeScript**: full-written in TypeScript
 - ⚛️ **State Management**: control conversion states
 - ⌛️ **Async Logic**: event handlers for asynchronous logic
