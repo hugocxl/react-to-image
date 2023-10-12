@@ -1,3 +1,12 @@
+## [0.0.7](https://github.com/hugocxl/react-to-image/compare/v0.0.6...v0.0.7) (2023-10-12)
+
+
+### Features
+
+* replaced rollup with tsup and improved config ([d338613](https://github.com/hugocxl/react-to-image/commit/d338613c17b58131738c7a8580e55845386c9c82))
+
+
+
 ## [0.0.6](https://github.com/hugocxl/react-to-image/compare/v0.0.5...v0.0.6) (2023-08-05)
 
 
