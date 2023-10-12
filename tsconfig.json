@@ -18,8 +18,7 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "ESNext",
-    "tsBuildInfoFile": "node_modules/.cache/.tsbuildinfo",
-    "verbatimModuleSyntax": true
+    "tsBuildInfoFile": "node_modules/.cache/.tsbuildinfo"
   },
   "exclude": ["node_modules"],
   "include": ["src"]
