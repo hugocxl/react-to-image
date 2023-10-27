@@ -22,6 +22,8 @@
 - 🏆 **MIT Licensed**: free for personal and commercial use
 - 🚀 **React Hooks**
 
+![Alt](https://repobeats.axiom.co/api/embed/ae01883d171ad206316b28b61099419430155550.svg "Repobeats analytics image")
+
 ## Table of Contents
 
 - [Installation](#installation)
@@ -43,9 +45,6 @@ npm package:
 ```sh
 pnpm add @hugocxl/react-to-image
 ```
-
-> **`html-to-image`** and **`react`** are **peerDependencies** of
-> **`react-to-image`**, you may **install your own versions**.
 
 ## Introduction
 
