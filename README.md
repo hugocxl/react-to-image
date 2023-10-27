@@ -12,6 +12,8 @@
 
 </div>
 
+![Alt](https://repobeats.axiom.co/api/embed/ae01883d171ad206316b28b61099419430155550.svg "Repobeats analytics image")
+
 ## Features
 
 - ✨ **Simple**: is simple to use and has no external dependencies at all
@@ -22,8 +24,6 @@
 - 🏆 **MIT Licensed**: free for personal and commercial use
 - 🚀 **React Hooks**
 
-![Alt](https://repobeats.axiom.co/api/embed/ae01883d171ad206316b28b61099419430155550.svg "Repobeats analytics image")
-
 ## Table of Contents
 
 - [Installation](#installation)
@@ -33,6 +33,7 @@
   - [Ref](#ref)
   - [Fn](#fn)
   - [Option](#options)
+- [Examples](#examples)
 - [Contributing](#contributing)
 - [Code of Conduct](#code-of-conduct)
 - [License](#license)
@@ -43,6 +44,8 @@ In order to use **`@hugocxl/react-to-image`**, all you need to do is install the
 npm package:
 
 ```sh
+npm i @hugocxl/react-to-image
+
 pnpm add @hugocxl/react-to-image
 ```
 
@@ -52,9 +55,7 @@ pnpm add @hugocxl/react-to-image
 images from a DOM node utilising the power of HTML5 canvas and SVG. It provides
 a seamless way to convert HTML elements into visual representations.
 
-**`react-to-image`** further enhances the integration of this library with React
-leveraging the capabilities of `html-to-image` and offering a simplified and
-intuitive approach for generating images from React components.
+**`react-to-image`** further enhances the integration of this library with React leveraging the capabilities of `html-to-image` and offering a simplified and intuitive approach for generating images from React components.
 
 ## Usage
 
@@ -96,7 +97,7 @@ The current hooks are being exported:
 - `useToCanvas`
 - `useToBlob`
 
-### State
+### `State`
 
 | name        |    type     | description                                                                                                                             |
 | ----------- | :---------: | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -108,16 +109,16 @@ The current hooks are being exported:
 | **isError**   | `boolean` | If the conversion has failed                                                                                                            |
 | **isSuccess** | `boolean` | If the conversion has succesfully finished                                                                                              |
 
-### Fn
+### `Fn`
 
 The function to be called to convert the image.
 
-### Ref
+### `Ref`
 
 The ref to be passed down to the HTML element that you want to capture as an
 image.
 
-### Options
+### `Options`
 
 Apart from the following, you have all the options available to
 [`html-to-image`](https://github.com/bubkoo/html-to-image/tree/master#options)
@@ -152,7 +153,7 @@ export default function App() {
 }
 ```
 
-### Using callbacks (onStart, onSuccess, onError)
+### Using callbacks (`onStart`, `onSuccess`, `onError`)
 
 ```tsx
 import { useToBlob } from '@hugocxl/react-to-image'
