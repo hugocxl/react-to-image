@@ -54,7 +54,7 @@ devDependencies:
     version: 29.1.1(@babel/core@7.23.2)(esbuild@0.19.6)(jest@29.7.0)(typescript@5.3.2)
   tsup:
     specifier: ^8.0.0
-    version: 8.0.0(typescript@5.3.2)
+    version: 8.0.1(typescript@5.3.2)
   typescript:
     specifier: ^5.2.2
     version: 5.3.2
@@ -4231,8 +4231,8 @@ packages:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
 
-  /tsup@8.0.0(typescript@5.3.2):
-    resolution: {integrity: sha512-9rOGn8LsFn2iAg2pCB1jnH7ygVuGjlzIomjw0jKXUxAii3iL5cXgm0jZMPKfFH1bSAjQovJ1DUVPSw+oDuIu8A==}
+  /tsup@8.0.1(typescript@5.3.2):
+    resolution: {integrity: sha512-hvW7gUSG96j53ZTSlT4j/KL0q1Q2l6TqGBFc6/mu/L46IoNWqLLUzLRLP1R8Q7xrJTmkDxxDoojV5uCVs1sVOg==}
     engines: {node: '>=18'}
     hasBin: true
     peerDependencies:
