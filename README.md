@@ -12,8 +12,6 @@
 
 </div>
 
-![Alt](https://repobeats.axiom.co/api/embed/ae01883d171ad206316b28b61099419430155550.svg "Repobeats analytics image")
-
 ## Features
 
 - ✨ **Simple**: is simple to use and has no external dependencies at all
