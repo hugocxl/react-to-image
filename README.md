@@ -249,7 +249,7 @@ import { useToPng } from '@hugocxl/react-to-image'
 
 export default function App() {
   const [{ isLoading }, convert, ref] = useToPng<HTMLDivElement>({
-    onSuccess: data => {
+    onSuccess: dataUrl => {
       const img = new Image();
       img.src = dataUrl;
       document.body.appendChild(img);
